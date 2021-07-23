@@ -1,0 +1,7 @@
+root = true
+
+[*.{cs,vb}]
+dotnet_diagnostic.RCS1090.severity=suggestion
+
+[*.{cs,vb}]
+dotnet_diagnostic.MA0004.severity=suggestion
