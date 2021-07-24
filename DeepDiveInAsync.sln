@@ -7,12 +7,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncBasicWithReturn", "Par
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part 1", "Part 1", "{3BA65993-7AE3-4096-ADE8-FCD953DDCF5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncBasic", "Part-1\AsyncBasic\AsyncBasic.csproj", "{B05AB922-E2B9-480F-A0A8-7535060F4E7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncBasic", "Part-1\AsyncBasic\AsyncBasic.csproj", "{B05AB922-E2B9-480F-A0A8-7535060F4E7E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{54B181C4-044D-429E-B223-0D82A13381ED}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part 3", "Part 3", "{6A0CAA9B-3C0E-4968-82AA-A893F07FD95B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskCancellation", "Part-3\TaskCancellation\TaskCancellation.csproj", "{BD036BD3-2041-4662-A210-48CB395CFFB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,6 +32,10 @@ Global
 		{B05AB922-E2B9-480F-A0A8-7535060F4E7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B05AB922-E2B9-480F-A0A8-7535060F4E7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B05AB922-E2B9-480F-A0A8-7535060F4E7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD036BD3-2041-4662-A210-48CB395CFFB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD036BD3-2041-4662-A210-48CB395CFFB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD036BD3-2041-4662-A210-48CB395CFFB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD036BD3-2041-4662-A210-48CB395CFFB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -35,6 +43,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{757253E8-204E-4F66-BE1C-B86555F6201C} = {3BA65993-7AE3-4096-ADE8-FCD953DDCF5F}
 		{B05AB922-E2B9-480F-A0A8-7535060F4E7E} = {3BA65993-7AE3-4096-ADE8-FCD953DDCF5F}
+		{BD036BD3-2041-4662-A210-48CB395CFFB1} = {6A0CAA9B-3C0E-4968-82AA-A893F07FD95B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {005E0CDA-BEDB-4C57-BA70-8A6693B1EECE}
