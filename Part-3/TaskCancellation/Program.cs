@@ -9,11 +9,12 @@ namespace TaskCancellation
         static async Task Main(string[] args)
         {
             var cancellationTokenSource = new CancellationTokenSource();
-            cancellationTokenSource.CancelAfter(6000);
+            cancellationTokenSource.CancelAfter(6000); // Cancel() -> Use this to Cancel that task now
 
             try
             {
                 await Task.Delay(5000, cancellationTokenSource.Token);
+                // await httpClient.GetStringAsync  -> Real world use case
             }
             catch (OperationCanceledException)  // Cancelled task MUST throw OperationCanceledException
             {
@@ -21,7 +22,6 @@ namespace TaskCancellation
             }
 
             Console.WriteLine("Application Ended");
-            // Console.ReadKey(); // To prevent console from exiting immediately
         }
     }
 }
