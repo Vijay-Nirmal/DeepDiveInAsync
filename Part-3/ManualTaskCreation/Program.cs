@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,18 +14,19 @@ namespace ManualTaskCreation
         {
             Console.WriteLine("Creating Random Number");
 
-            var result = await GetRandomNumberWithinAsync();
+            var result = await GetRandomNumberWithinAsync(10);
 
             Console.WriteLine($"Result is -> {result}");
         }
 
-        public static Task<int> GetRandomNumberWithinAsync()
+        public static Task<int> GetRandomNumberWithinAsync(int maxValue)
         {
             var tcs = new TaskCompletionSource<int>();
 
             try
             {
-                GetRandomNumberWithin(10, (result) => {
+                GetRandomNumberWithin(maxValue, (result) =>
+                {
                     tcs.SetResult(result);
                 });
             }
