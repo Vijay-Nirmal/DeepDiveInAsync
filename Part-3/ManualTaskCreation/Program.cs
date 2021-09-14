@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.ComTypes;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace ManualTaskCreation
@@ -19,6 +14,7 @@ namespace ManualTaskCreation
             Console.WriteLine($"Result is -> {result}");
         }
 
+        // Converting non asynchronous method to asynchronous method
         public static Task<int> GetRandomNumberWithinAsync(int maxValue)
         {
             var tcs = new TaskCompletionSource<int>();
@@ -27,17 +23,21 @@ namespace ManualTaskCreation
             {
                 GetRandomNumberWithin(maxValue, (result) =>
                 {
+                    Console.WriteLine($"Setting task result");
                     tcs.SetResult(result);
                 });
             }
             catch (Exception e)
             {
+                Console.WriteLine($"Setting exception");
                 tcs.SetException(e);
             }
 
+            Console.WriteLine($"Returning Task");
             return tcs.Task;
         }
 
+        // Assume this is a build-in non asynchronous method 
         public static void GetRandomNumberWithin(int maxValue, Action<int> callback)
         {
             if (maxValue <= 0)
@@ -45,10 +45,12 @@ namespace ManualTaskCreation
                 throw new ArgumentOutOfRangeException(nameof(maxValue));
             }
 
-            Thread.Sleep(2000); // Just for demo purpose
-
-            var random = new Random();
-            callback(random.Next(maxValue));
+            // Just for demo purpose to simulate a delay before sending the result
+            Task.Delay(8000).ContinueWith(_ =>
+            {
+                var random = new Random();
+                callback(random.Next(maxValue));
+            });
         }
     }
 }

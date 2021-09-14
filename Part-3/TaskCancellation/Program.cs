@@ -9,26 +9,28 @@ namespace TaskCancellation
         static async Task Main(string[] args)
         {
             var cancellationTokenSource = new CancellationTokenSource();
-            cancellationTokenSource.CancelAfter(1000); // Cancel() -> Use this to Cancel that task now
+            cancellationTokenSource.CancelAfter(1000); // Cancel() -> Use this to Cancel that task immediately
 
             try
             {
-                // await Task.Delay(5000, cancellationTokenSource.Token);  // Just for demo purpose
+                await Task.Delay(3000, cancellationTokenSource.Token);  // Just for demo purpose
                 // await httpClient.GetStringAsync  -> Real world use case
 
-                await DoTaskAAsync(cancellationTokenSource.Token); // Our own CancellationToken implementation
+                // await DoTaskAAsync(cancellationTokenSource.Token); // Our own CancellationToken implementation
+
+                Console.WriteLine("1 - Task has been completed successfully without cancellation");
             }
             catch (OperationCanceledException e)  // Cancelled task MUST throw OperationCanceledException
             {
                 if (e is TaskCanceledException)
                 {
-                    // Task was cancelled before running
+                    // Task was cancelled before even starting (Throws from Task.Run method)
                 }
 
-                Console.WriteLine("Task is cancelled");
+                Console.WriteLine("2 - Task is cancelled");
             }
 
-            Console.WriteLine("Application Ended");
+            Console.WriteLine("3 - Application Ended");
 
             Console.ReadKey();
         }
@@ -36,13 +38,11 @@ namespace TaskCancellation
         public static async Task DoTaskAAsync(CancellationToken cancellationToken = default)
         {
             // Before stating the work, its good to check if CancellationRequested, then throw immediately
-
-
             cancellationToken.ThrowIfCancellationRequested();
 
             await Task.Run(() =>
             {
-                Console.WriteLine("TaskA started");
+                Console.WriteLine("4 - TaskA started");
 
                 for (int i = 0; i < 100_000_000; i++)
                 {
@@ -52,14 +52,14 @@ namespace TaskCancellation
                         // because sometime we MUST not cancel an operation that is already started
 
                         // If there are any unmanaged objects, make sure to clean up (Dispose)
-                        Console.WriteLine("TaskA Cancelled");
+                        Console.WriteLine("5 - TaskA Cancelled");
                         cancellationToken.ThrowIfCancellationRequested();
                     }
 
                     var _ = Guid.NewGuid();
                 }
 
-                Console.WriteLine("TaskA Ended");
+                Console.WriteLine("6 - TaskA Ended");
             }, cancellationToken);  // cancellationToken passed here DOESN'T stop the task if it was already started. If the task is not yet started and CancellationRequest is raised then it will throw the TaskCanceledException
         }
     }
